@@ -1,5 +1,11 @@
 CACHE MANIFEST
 favicon.ico
+javascripts/dd_belatedpng.js
+javascripts/jquery-1.4.2.min.js
+javascripts/jquery-audivid.js
+javascripts/modernizr-1.5.min.js
+javascripts/plugins.js
+javascripts/script.js
 stylesheets/main.css
 images/favicon.png
 images/apple-touch-icon.png
