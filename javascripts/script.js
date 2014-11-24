@@ -4,14 +4,20 @@ function init_ui() {
     mp3: { mime: "audio/mpeg",  ext: "mp3"},
     wav: { mime: "audio/x-wav", ext: "wav"}
   };
-
+  $("#cards a.flip-button").each( function() {
+	$(this).click(function() {
+	    console.log("hello");
+		$(this).parents(".card-container").children(".flip-container").toggleClass("flip");
+	});
+	}
+  );
   for( var format in formats ) {
     format = formats[format];
     var myAudioTag = undefined; // Global
     var audioTagSupport = !!((myAudioTag = document.createElement('audio')).canPlayType);
     format.canPlayTag = audioTagSupport ? myAudioTag.canPlayType(format.mime) : "undefined";
     if( format.canPlayTag ) {
-      $("#cards a").each( 
+      $("#cards a.play-button").each( 
         function() {
           $(this).click( function() { 
             var p = $(this).attr( "data-soundfile");
