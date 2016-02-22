@@ -16,7 +16,7 @@ article, aside, figure, footer, header, hgroup, nav, section { display:block; }
 nav ul { list-style:none; }
 blockquote, q { quotes:none; }
 blockquote:before, blockquote:after, q:before, q:after { content:''; content:none; }
-a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+a { margin:0; padding:0; font-size:100%; background:transparent; }
 ins { background-color:#ff9; color:#000; text-decoration:none; }
 mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
 del { text-decoration: line-through; }
@@ -122,27 +122,75 @@ button {  width: auto; overflow: visible; }
   margin: 0 auto;
 }
 
+/*Card styling and flip animation */
 #cards {
   text-align: center;
-  height: 1990px;
+  height: 2300px;
 }
 
-#cards a {
-  cursor: pointer;
+/* keep the 3d perspective of entire container */
+.flip-container {
+	perspective: 1000;
+}
+
+/* flip the card when the flip button is pressed */
+.flip-container.flip  .card {
+	transform: rotateY(180deg);
+}
+
+/* set flip speed */
+.card {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	width: 100%;
+	height: 140px;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+	font-size: 22px;
+	line-height: 42px;
+}
+
+#cards .card-container{
   margin: 0 30px 40px 30px;
   display: block;
   float: left;
   width: 250px;
-  height: 161px;
-  background: transparent url('../images/card.png');
-  line-height: 100px;
-
+  height: 191px;
   font-family: Georgia, serif;
   color: #444;
   font-size: 42px;
   font-weight: bold;
 }
-
+.card  {
+  height: 161px;
+  background: transparent url('../images/card.png');
+  width: 100%;
+  line-height: 100px;
+}
+.button-bar {
+  height: 40px;
+  margin-top: -20px;
+}
 #cards a img {
   width: 180px;
 }
@@ -168,6 +216,7 @@ button {  width: auto; overflow: visible; }
 
 #top-bar {
   margin: 30px 0;
+  background-color: #800000;
 }
 
 #top-bar h1 {
@@ -189,4 +238,11 @@ button {  width: auto; overflow: visible; }
   color: #fff;
 }
 
+.card-container button {
+	background-color: #800000;
+	color: white;
+	font-size: 26px;
+	border-radius: 10%;
+	border: none;
+}
 
